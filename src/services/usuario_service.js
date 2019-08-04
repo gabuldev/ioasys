@@ -1,7 +1,6 @@
 const { UsuarioRepo } = require("../repositors/usuario_repo");
 const { Usuario } = require("../models/usuario");
 const { Response } = require("../models/response")
-const {EmailFunction} = require("../helpers/helper_email");
 const {Security} = require("../config/security");
 const validator = require("../validators/usuario_validators");
 const bcrypt = require('bcrypt');

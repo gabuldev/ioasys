@@ -1,4 +1,4 @@
-const {Permission} = require("../config/permission");
+
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -6,7 +6,6 @@ class Security {
 
   static verifyJWT(req, res, next) {
     var token = req.headers["authorization"];
-    var permission;
     if (!token)
       return res.send(400, { message: "O token não foi enviado no header!" });
 
@@ -20,14 +19,7 @@ class Security {
       // se tudo estiver ok, salva no request para uso posterior
       else {
         req.user = decoded.user;
-        permission = Permission.verify(req.url,req.method,req.user.tipousuario);
-        if(permission){
-   
         next();
-        }
-        else{
-          return res.send(401, { message: "Usuário não tem permissão para acessar esse recurso!" });
-        }
       }
     });
   }
